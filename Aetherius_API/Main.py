@@ -2208,13 +2208,13 @@ async def Aetherius_Agent(user_input, username, user_id, bot_name, image_path=No
             
         cwd = os.getcwd()
         if select_api == "Oobabooga":
-            sub_agent_path = "Aetherius_API\Sub_Agents\Oobabooga"
+            sub_agent_path = os.path.join("Aetherius_API", "Sub_Agents", "Oobabooga")
         if select_api == "AetherNode":
-            sub_agent_path = "Aetherius_API\Sub_Agents\AetherNode_Llama_2"
+            sub_agent_path = os.path.join("Aetherius_API", "Sub_Agents", "AetherNode_Llama_2")
         if select_api == "OpenAi":
-            sub_agent_path = "Aetherius_API\Sub_Agents\OpenAi"
+            sub_agent_path = os.path.join("Aetherius_API", "Sub_Agents", "OpenAi")
         if select_api == "KoboldCpp":
-            sub_agent_path = "Aetherius_API\Sub_Agents\KoboldCpp"
+            sub_agent_path = os.path.join("Aetherius_API", "Sub_Agents", "KoboldCpp")
             
         folder_path = os.path.join(cwd, sub_agent_path.lstrip('/'))
         filename_description_map = await load_filenames_and_descriptions(folder_path, username, user_id, bot_name)
@@ -2703,26 +2703,26 @@ async def process_line(host, host_queue, bot_name, username, line, task_counter,
                 print("\nError with Module, using fallback")
                 
                 if select_api == "Oobabooga":
-                    fallback_path = ".\Aetherius_API\Sub_Agents\Oobabooga\Research\External_Resource_DB_Search.py"
+                    fallback_path = os.path.join(".", "Aetherius_API", "Sub_Agents", "Oobabooga", "Research", "External_Resource_DB_Search.py")
                 if select_api == "AetherNode":
-                    fallback_path = ".\Aetherius_API\Sub_Agents\AetherNode_Llama_2\Research\External_Resource_DB_Search.py"
+                    fallback_path = os.path.join(".", "Aetherius_API", "Sub_Agents", "AetherNode_Llama_2", "Research", "External_Resource_DB_Search.py")
                 if select_api == "OpenAi":
-                    fallback_path = ".\Aetherius_API\Sub_Agents\OpenAi\Research\External_Resource_DB_Search.py"
+                    fallback_path = os.path.join(".", "Aetherius_API", "Sub_Agents", "OpenAi", "Research", "External_Resource_DB_Search.py")
                 if select_api == "KoboldCpp":
-                    fallback_path = ".\Aetherius_API\Sub_Agents\KoboldCpp\Research\External_Resource_DB_Search.py"
+                    fallback_path = os.path.join(".", "Aetherius_API", "Sub_Agents", "KoboldCpp", "Research", "External_Resource_DB_Search.py")
                 subagent_selection = [os.path.basename(fallback_path)]
                 
             for filename_with_extension in subagent_selection:
                 filename = filename_with_extension.rstrip('.py')
                 
                 if select_api == "Oobabooga":
-                    script_path = os.path.join(f'.\Aetherius_API\Sub_Agents\Oobabooga\{line_cat}', filename_with_extension)
+                    script_path = os.path.join(".", "Aetherius_API", "Sub_Agents", "Oobabooga", line_cat, filename_with_extension)
                 if select_api == "AetherNode":
-                    script_path = os.path.join(f'.\Aetherius_API\Sub_Agents\AetherNode_Llama_2\{line_cat}', filename_with_extension)
+                    script_path = os.path.join(".", "Aetherius_API", "Sub_Agents", "AetherNode_Llama_2", line_cat, filename_with_extension)
                 if select_api == "OpenAi":
-                    script_path = os.path.join(f'.\Aetherius_API\Sub_Agents\OpenAi\{line_cat}', filename_with_extension)
+                    script_path = os.path.join(".", "Aetherius_API", "Sub_Agents", "OpenAi", line_cat, filename_with_extension)
                 if select_api == "KoboldCpp":
-                    script_path = os.path.join(f'.\Aetherius_API\Sub_Agents\KoboldCpp\{line_cat}', filename_with_extension)
+                    script_path = os.path.join(".", "Aetherius_API", "Sub_Agents", "KoboldCpp", line_cat, filename_with_extension)
                 if os.path.exists(script_path):
                     spec = spec_from_file_location(filename, script_path)
                     module = module_from_spec(spec)
