@@ -10,9 +10,9 @@ from time import time, sleep
 import datetime
 from uuid import uuid4
 
-key_path = open_file('./Aetherius_API/api_keys/key_openai.txt')
+from Aetherius_API.Utilities.env_reader import get_openai_api_key
 
-service = OpenAI(api_key=key_path)
+service = OpenAI(api_key=get_openai_api_key())
 
 def gpt3_embedding(query, engine='text-embedding-ada-002'):
     max_counter = 7

@@ -9,9 +9,9 @@ def open_file(filepath):
     with open(filepath, 'r', encoding='utf-8') as infile:
         return infile.read()
 
-key_path = open_file('./Aetherius_API/api_keys/key_openai.txt')
+from Aetherius_API.Utilities.env_reader import get_openai_api_key
 
-service = OpenAI(api_key=key_path)
+service = OpenAI(api_key=get_openai_api_key())
     
     
 def gpt_vision(query, image_path):

@@ -70,9 +70,15 @@ if check_local_server_running():
     client = QdrantClient(url="http://localhost:6333")
 else:
     try:
-        url = open_file('./Aetherius_API/api_keys/qdrant_url.txt')
-        api_key = open_file('./Aetherius_API/api_keys/qdrant_api_key.txt')
-        client = QdrantClient(url=url, api_key=api_key)
+        from Aetherius_API.Utilities.env_reader import get_qdrant_url, get_qdrant_api_key
+        url = get_qdrant_url()
+        api_key = get_qdrant_api_key()
+        if url and api_key:
+            client = QdrantClient(url=url, api_key=api_key)
+        elif url:
+            client = QdrantClient(url=url)
+        else:
+            raise Exception("No Qdrant configuration found")
         client.recreate_collection(
             collection_name="Ping",
             vectors_config=VectorParams(size=1, distance=Distance.COSINE),
