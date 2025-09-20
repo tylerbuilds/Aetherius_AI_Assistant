@@ -1,1 +1,0 @@
-https://f29b8a60-8a37-4c17-ad58-b0ea77ed2bc8.us-east4-0.gcp.cloud.qdrant.io:6333
